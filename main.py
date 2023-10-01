@@ -74,24 +74,27 @@ while game_on:
             game_on = False
             print("\n", colored("Draw", "green"), "\n")
         else:
-            if len(player1) == len(player2):
-                move = int(input("\nPlayer 1, enter a number: "))
-                if move in player1:
-                    print("\nInvalid move, position occupied aka you already played there.\n")
-                elif move not in player2:
-                    player1.append(move)
-                    print("\n")
-                    board[move] = '\033[31mX\033[00m'
+            try:
+                if len(player1) == len(player2):
+                    move = int(input("\nPlayer 1, enter a number: "))
+                    if move in player1:
+                        print("\nInvalid move, position occupied aka you already played there.\n")
+                    elif move not in player2:
+                        player1.append(move)
+                        print("\n")
+                        board[move] = '\033[31mX\033[00m'
+                    else:
+                        print("\nInvalid move, position occupied aka player 2 already played there.\n")
                 else:
-                    print("\nInvalid move, position occupied aka player 2 already played there.\n")
-            else:
-                move = int(input("\nPlayer 2, enter a number: "))
-                if move in player2:
-                    print("\nInvalid move, position occupied aka you  already played there.\n")
-                elif move not in player1:
-                    player2.append(move)
-                    print("\n")
-                    board[move] = '\033[34mO\033[00m'
-                else:
-                    print("\nInvalid move, position occupied aka player 1 already played there.\n")
+                    move = int(input("\nPlayer 2, enter a number: "))
+                    if move in player2:
+                        print("\nInvalid move, position occupied aka you  already played there.\n")
+                    elif move not in player1:
+                        player2.append(move)
+                        print("\n")
+                        board[move] = '\033[34mO\033[00m'
+                    else:
+                        print("\nInvalid move, position occupied aka player 1 already played there.\n")
+            except ValueError:
+                print("\nInvalid move, enter a number.\n")
     print_board(board)
